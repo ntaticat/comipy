@@ -1,0 +1,39 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Iniciar sesión</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit($event)">
+      <p>
+        <mat-form-field>
+          <mat-label>Correo electrónico</mat-label>
+          <input
+            matInput
+            placeholder="Introduce tu correo"
+            name="email"
+            required
+            formControlName="email"
+          />
+        </mat-form-field>
+      </p>
+
+      <p>
+        <mat-form-field>
+          <mat-label>Contraseña</mat-label>
+          <input
+            matInput
+            type="password"
+            placeholder="Introduce tu contraseña"
+            name="password"
+            required
+            formControlName="password"
+          />
+        </mat-form-field>
+      </p>
+
+      <button mat-raised-button color="primary" type="submit">
+        Iniciar sesión
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>

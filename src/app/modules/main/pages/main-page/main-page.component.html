@@ -1,0 +1,73 @@
+<mat-toolbar color="primary">
+  <span>Comipy</span>
+  <span class="spacer"></span>
+
+  <div class="">
+    <button mat-fab extended color="primary">
+      <mat-icon>account_circle</mat-icon>
+      {{ docenteData?.nombre_completo }}
+    </button>
+
+    <button mat-fab color="accent" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+    </button>
+  </div>
+</mat-toolbar>
+
+<!-- Dashboard Component -->
+<div class="dashboard">
+  <h1>Menú Principal</h1>
+  <div class="menu">
+    <mat-card class="section">
+      <mat-card-header>
+        <mat-card-title>Alumnos</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Administra la información de tus alumnos.</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" [routerLink]="['/alumnos']">
+          Ir a Alumnos
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <mat-card class="section">
+      <mat-card-header>
+        <mat-card-title>Cursos</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Consulta los cursos que estás impartiendo.</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button
+          disabled
+          mat-raised-button
+          color="primary"
+          [routerLink]="['/cursos']"
+        >
+          Ir a Cursos
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <mat-card class="section">
+      <mat-card-header>
+        <mat-card-title>Asistencias</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Registra las asistencias de tus alumnos.</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button
+          disabled
+          mat-raised-button
+          color="primary"
+          [routerLink]="['/asistencias']"
+        >
+          Ir a Asistencias
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>

@@ -1,0 +1,111 @@
+<p>
+  <mat-toolbar color="primary">
+    <a [routerLink]="['/', 'main']" class="custom-link">Comipy</a>
+  </mat-toolbar>
+</p>
+
+<mat-form-field>
+  <mat-label>Buscar alumnos</mat-label>
+  <input
+    matInput
+    (keyup)="applyFilter($event)"
+    placeholder="Escribe para buscar..."
+  />
+</mat-form-field>
+<mat-form-field>
+  <mat-label>Por columna</mat-label>
+  <mat-select [(value)]="selectedColumn">
+    <mat-option *ngFor="let column of filterColumns" [value]="column.value">
+      {{ column.viewValue }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <!-- Checkbox Column -->
+  <ng-container matColumnDef="select">
+    <th mat-header-cell *matHeaderCellDef>
+      <mat-checkbox
+        (change)="$event ? toggleAllRows() : null"
+        [checked]="selection.hasValue() && isAllSelected()"
+        [indeterminate]="selection.hasValue() && !isAllSelected()"
+        [aria-label]="checkboxLabel()"
+      >
+      </mat-checkbox>
+    </th>
+    <td mat-cell *matCellDef="let row">
+      <mat-checkbox
+        (click)="$event.stopPropagation()"
+        (change)="$event ? selection.toggle(row) : null"
+        [checked]="selection.isSelected(row)"
+        [aria-label]="checkboxLabel(row)"
+      >
+      </mat-checkbox>
+    </td>
+  </ng-container>
+
+  <!-- Columnas definidas aquí -->
+  <ng-container matColumnDef="activo">
+    <th mat-header-cell *matHeaderCellDef>Activo</th>
+    <td mat-cell *matCellDef="let alumno">{{ alumno.activo ? "Sí" : "No" }}</td>
+  </ng-container>
+
+  <!-- Folio Column -->
+  <ng-container matColumnDef="folio">
+    <th mat-header-cell *matHeaderCellDef>Folio</th>
+    <td mat-cell *matCellDef="let alumno">
+      {{ alumno.folio || "No disponible" }}
+    </td>
+  </ng-container>
+
+  <!-- Nombre Completo Column -->
+  <ng-container matColumnDef="nombre_completo">
+    <th mat-header-cell *matHeaderCellDef>Nombre Completo</th>
+    <td mat-cell *matCellDef="let alumno">
+      {{ alumno.nombre_completo || "No disponible" }}
+    </td>
+  </ng-container>
+
+  <!-- Turno Column -->
+  <ng-container matColumnDef="turno_id">
+    <th mat-header-cell *matHeaderCellDef>Turno</th>
+    <td mat-cell *matCellDef="let alumno">{{ alumno.turno_id }}</td>
+  </ng-container>
+
+  <!-- Nombre Completo Column -->
+  <ng-container matColumnDef="nombres">
+    <th mat-header-cell *matHeaderCellDef>Nombre</th>
+    <td mat-cell *matCellDef="let alumno">
+      {{ alumno.nombres || "No disponible" }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="primer_apellido">
+    <th mat-header-cell *matHeaderCellDef>Primer Apellido</th>
+    <td mat-cell *matCellDef="let alumno">
+      {{ alumno.primer_apellido || "No disponible" }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="segundo_apellido">
+    <th mat-header-cell *matHeaderCellDef>Segundo Apellido</th>
+    <td mat-cell *matCellDef="let alumno">
+      {{ alumno.segundo_apellido || "No disponible" }}
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="alumno_id">
+    <th mat-header-cell *matHeaderCellDef>Id</th>
+    <td mat-cell *matCellDef="let alumno">{{ alumno.alumno_id }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>
+
+<mat-paginator
+  #paginator
+  [pageSize]="200"
+  [pageSizeOptions]="[5, 10, 20, 50, 100, 200]"
+  showFirstLastButtons
+></mat-paginator>

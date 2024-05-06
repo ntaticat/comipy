@@ -1,0 +1,31 @@
+/* Structure */
+table {
+  width: 100%;
+}
+
+.mat-mdc-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+/* styles.css o your-component.css */
+.custom-link {
+  text-align: center;
+  width: 100%;
+  color: white; /* Cambia el color del texto */
+  font-size: 18px; /* Aumenta el tamaño de la fuente */
+  text-decoration: none; /* Elimina el subrayado */
+  padding: 10px; /* Añade algo de padding */
+  border-radius: 4px; /* Bordes redondeados */
+  transition: background-color 0.3s; /* Transición suave de color de fondo */
+}
+
+.custom-link:hover {
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.2
+  ); /* Color de fondo al pasar el mouse */
+  text-decoration: underline; /* Subraya el texto al pasar el mouse */
+}
